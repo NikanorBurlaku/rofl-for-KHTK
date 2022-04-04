@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KGTK</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <h2 class="hello-text">На дворе 2022 год и ты обычный студент КГТК,<br>
+        который мечтает выкурить пару сигарет после пар, <br>
+        но будь осторожен, рано или поздно тебя
+        поймают!
+    </h2>
+    <div class="chose">
+        <h2 class="chose-text">Chose your fighter!!!</h2>
+        <div class="chose-block">
+            <img src="ruben.jpg" alt="" class="chose-img">
+            <img src="komova.jpg" alt="" class="chose-img">
+            <img src="krivonogova.jpg" alt="" class="chose-img">
+        </div>
+    </div>
+
+    <div class="chel" style="left: 800px; top: 800px"></div>
+    <script>
+        "use strict"
+        let windowHeight = document.documentElement.clientHeight;
+        let windowWidth = document.documentElement.clientWidth;
+        let body = document.querySelector('body');
+        let chel = document.querySelector('.chel');
+        let y = 0;
+        let cout = 0;
+        let bg = ['ruben.jpg', 'komova.jpg', 'krivonogova.jpg'];
+
+
+        setTimeout(function () {
+            let hello = document.querySelector('.hello-text');
+
+
+            body.removeChild(hello);
+            choseFighter();
+
+        }, 4000)
+
+        function choseFighter() {
+            let chose = document.querySelector('.chose');
+
+            chose.style.display = 'flex';
+
+            let elems = document.querySelectorAll('.chose-img');
+            console.log(elems.length);
+
+            for (let i = 0; i < elems.length; i++){
+
+                elems[i].addEventListener('click', function(){
+                
+                    startGame(bg[i]);
+
+                })
+            }
+        }
+
+        function startGame(background) {
+
+            let chose = document.querySelector('.chose');
+            chose.style.display = 'none';
+
+            let timerId = setInterval(function () {
+                let marginLeftChel = chel.style.left;
+                let marginTopChel = chel.style.top;
+
+
+                let elems = document.querySelectorAll('.square');
+
+                console.log(elems.length);
+                for (let elem of elems) {
+
+                    elem.style.background = 'url(' + background + ')';
+                    elem.style.backgroundSize = 'contain';
+                    let marginTop = elem.style.top;
+                    let marginLeft = elem.style.left;
+                    let y = marginTop.slice(0, -2);
+                    let x = marginTop.slice(0, -2);
+
+
+                    if (marginTopChel == marginTop && marginLeftChel == marginLeft) {
+                        clearInterval(timerId);
+                        clearInterval(timerCreate);
+                        body.innerHTML = '';
+                        let h1 = document.createElement('h1');
+                        let p = document.createElement('p');
+                        let img = document.createElement('img');
+
+                        img.src = 'wasted.jpg';
+                        img.classList.add('wasted');
+                        p.innerHTML = 'WASTED'
+                        h1.innerHTML = `О нет, ты успел скурить всего ${cout} сигарет`;
+
+
+                        body.appendChild(h1);
+                        body.appendChild(p);
+                        body.appendChild(img);
+                    }
+                    if (y <= windowHeight) {
+
+                        elem.style.top = +y + 100 + 'px';
+                    } else if (y > windowHeight) {
+                        cout++;
+                    }
+                }
+            }
+                , 500)
+
+            let timerCreate = setInterval(function () {
+
+                let x = calculWidth();
+
+                let square = document.createElement('div');
+
+                square.style.left = x + 'px';
+                square.style.top = y + 'px';
+                square.classList.add('square');
+                square.style.background = background;
+                body.append(square);
+            }
+                , 100)
+            function calculWidth() {
+                let windowWidth = document.documentElement.clientWidth;
+
+                let x = Math.floor(Math.random() * (windowWidth / 100));
+                x += '00';
+
+                return x;
+            }
+
+            document.addEventListener('keydown', function (event) {
+
+
+                let marginLeft = chel.style.left;
+                let marginTop = chel.style.top;
+                let x = marginLeft.slice(0, -2);
+                let y = marginTop.slice(0, -2);
+                let endWidth = +x + 100;
+                let endHeight = +y + 100;
+
+
+                if (x >= 100 && event.keyCode == 37) {
+                    chel.style.left = +x - 100 + 'px'
+                }
+                if (endWidth <= windowWidth && event.keyCode == 39) {
+                    chel.style.left = +x + 100 + 'px'
+                }
+
+                if (y >= 100 && event.keyCode == 38) {
+                    chel.style.top = +y - 100 + 'px'
+                }
+                if (endHeight <= windowHeight && event.keyCode == 40) {
+                    chel.style.top = +y + 100 + 'px'
+                }
+
+            })
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
