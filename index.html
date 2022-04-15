@@ -81,8 +81,8 @@
 
                 for (let elem of elems) {
 
-                    /*   elem.style.background = 'url(' + background + ')';
-                      elem.style.backgroundSize = 'contain'; */
+                      elem.style.background = 'url(' + background + ')';
+                      elem.style.backgroundSize = 'contain';
                     let marginTop = elem.style.top;
                     let marginLeft = elem.style.left;
                     let y = marginTop.slice(0, -2);
@@ -116,7 +116,7 @@
                     }
                 }
             }
-                , 400)
+                , 600)
 
             let timerCreate = setInterval(function () {
 
@@ -129,14 +129,14 @@
                 square.classList.add('square');/* 
                 square.style.background = background; */
                 body.append(square);
-            }, 100)
+            }, 200)
             function calculWidth() {
                 let windowWidth = document.documentElement.clientWidth;
 
-                let x = (Math.floor(Math.random() * (windowWidth / 100)));
+                let x = (Math.floor(Math.random() * (100 / 10)) + 0);
                 x += '0';
-
-                return x;
+                
+                    return x;
             }
 
             document.addEventListener('keydown', function (event) {

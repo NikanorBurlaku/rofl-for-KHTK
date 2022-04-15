@@ -20,7 +20,7 @@ body {
     position: absolute;
     background-size: contain;
     border: 1px solid #000;
-    transition: linear .4s;
+    transition: linear .6s;
     box-sizing: border-box;
 }
 
