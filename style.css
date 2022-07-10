@@ -30,7 +30,8 @@ body {
     background: url(images.png);
     position: absolute;
     border-radius: 50%;
-    background-size: contain;
+    background-position-x: 75%;
+    background-size: cover;
     transition: linear;
     transition: linear .2s;
 }
@@ -39,9 +40,12 @@ h1,
 p,
 .wasted {
     margin: 0;
-    margin-top: 5vw;
+    margin-top: 2vw;
 }
-
+.wasted{
+    width: 40vw;
+    height: 30vw;
+}
 h1 {
     color: #fff;
     text-align: center;
@@ -52,7 +56,7 @@ h1 {
         2px -4px 6px #fd3,
         -2px -6px 11px #f80,
         2px -8px 18px #f20;
-    font-size: 60px;
+    font-size: 4vw;
 }
 
 p {
@@ -60,8 +64,8 @@ p {
     text-align: center;
     background: rgba(0, 0, 0, 0.5);
     color: red;
-    font-size: 100px;
-    padding: 20px;
+    font-size: 8vw;
+    padding: 10px;
     font-weight: 900;
     -webkit-text-stroke: 5px black;
 }
@@ -111,8 +115,11 @@ p {
 
 }
 
-@media (max-width: 500px) {
-
+@media (max-width: 1000px) {
+.chel{
+   /*  width: 20vw;
+    height: 20vw; */
+}
 
 }
 
